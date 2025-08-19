@@ -1,0 +1,83 @@
+/* src/index.css
+   Minimal global CSS for the app.
+   - DO NOT set body background here (theme.js controls it)
+   - Removes tap highlight, focus outlines, and image dragging/selecting
+*/
+
+/* ----- interactive element reset ----- */
+html body button,
+html body a,
+html body input,
+html body textarea,
+html body [role="button"],
+html body .chakra-button,
+html body .chakra-icon-button {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-focus-ring-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ----- prevent selection / dragging (as requested) ----- */
+* {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+
+  -webkit-user-drag: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* remove focus outlines globally (note: hurts keyboard accessibility) */
+*:focus,
+*:focus-visible,
+*:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Firefox inner focus */
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+/* ----- base layout / typography ----- */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* IMPORTANT: do NOT set body background or color here.
+   Chakra's theme.js will control body background and text color. */
+
+/* ----- small UI defaults ----- */
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ----- image protections (best-effort) ----- */
+/* prevents dragging on WebKit browsers and disables selection */
+img, picture, svg {
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  /* keep pointer events so clicks still work (avatars) */
+}
+
+/* ----- light-mode helpers (non-authoritative over theme.js) ----- */
+@media (prefers-color-scheme: light) {
+  a:hover { opacity: 0.95; }
+}
